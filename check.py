@@ -39,6 +39,7 @@ def isArray(func_name, content):
 	else:
 		return False
 
+### Beautiful Code, dont Touch ###
 def extract_func(abs_file):
 	file_obj = open(abs_file, 'r')
 	file_content = rm_comments(file_obj.read())
@@ -57,27 +58,37 @@ def extract_func(abs_file):
 	# If no functions are used
 	if list_of_func == []:
 		return 0
-
+	# set removes the duplicate elements in list
 	list_of_func = list(set(rm_loops(list_of_func, file_content)))
 	return list_of_func
 
 
+
+def inFiveThreeThree(func_name, func_list_file):
+	file_obj = open(func_list_file,'r')
+	func_list = file_obj.read().split('\n')
+	file_obj.close()
+
+	
+
 # MAIN LOOP FOR TRAVERSING
-path='/media/d2c1960d-a6c5-4a50-a642-1cd33212cde0/uploads/45/CH7/EX7.4/'
-#path='/media/d2c1960d-a6c5-4a50-a642-1cd33212cde0/uploads'
+#path='/media/d2c1960d-a6c5-4a50-a642-1cd33212cde0/uploads/45/CH7/EX7.4/'
+path='/media/d2c1960d-a6c5-4a50-a642-1cd33212cde0/uploads'
 for roots, dirs, files in os.walk(path):
 	for scifile in files:
 		if (scifile.find('.sci') != -1) or (scifile.find('.sce') !=-1 ):
 			fullfile = roots+'/'+scifile
 			print fullfile
-			(extract_func(fullfile))
+			print str(extract_func(fullfile))
 			# Call yelp
 			#subprocess.call(['./yelp', fullfile])
 
-#argparse files
+
+# Remove contents from disp('contents') before searching functions
+# argparse files
 # remove comments from content before parsing DONE
 # remove array from content, my_array(5) 5 => index
 # integrate yelp
 # printf( N(, N(, N(  case
 # remove user funcions
-
+# Function Centric Approach
