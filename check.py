@@ -48,8 +48,9 @@ def extract_func(abs_file):
 	# Function to remove false positive loop keywords like for/while and array declarations
 	def rm_loops(list_of_func, content):
 		proper_func_list = []
+		elementary_loops = ['for','if','while']
 		for func in list_of_func:
-			if ((func != 'if') and (func != 'for') and (func != 'while') and (not(isArray(func,content)))): # Replace last condition by array condition
+			if ((func not in elementary_loops) and (not(isArray(func,content)))): # Replace last condition by array condition
 				func = func.strip("(")
 				proper_func_list.append(func)
 
@@ -73,7 +74,8 @@ def inFiveThreeThree(func_name, func_list_file):
 
 # MAIN LOOP FOR TRAVERSING
 #path='/media/d2c1960d-a6c5-4a50-a642-1cd33212cde0/uploads/45/CH7/EX7.4/'
-path='/media/d2c1960d-a6c5-4a50-a642-1cd33212cde0/uploads'
+#path='/media/d2c1960d-a6c5-4a50-a642-1cd33212cde0/uploads'
+path = 'dummy_scripts'
 for roots, dirs, files in os.walk(path):
 	for scifile in files:
 		if (scifile.find('.sci') != -1) or (scifile.find('.sce') !=-1 ):
