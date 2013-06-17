@@ -1,6 +1,7 @@
 #!/bin/bash
 
-w3m -no-cookie -dump_source http://help.scilab.org/docs/5.4.1/en_US/ > all_functions
+version=$1
+w3m -no-cookie -dump_source http://help.scilab.org/docs/$version/en_US/ > all_functions
 
 # As the function class is also in list-refentry line in some places. To fix that
 # we need to add new line after this class so that we can distinguish lines with functions
