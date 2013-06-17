@@ -1,5 +1,5 @@
 ####Why the name is so horrible?
-> What's in a name
+> What's in a name?
 
 ####What does it do?
 > Its in the name, checks thousands of scilab(.sc[i,e]) scripts and compares functions of script to list of functions which given scilab-version supports
@@ -11,7 +11,7 @@
 2. Scilab-interpreter is bad, it will hang up the first time it encounters a incompatible function in a script<br/>
 3. Scilab-interpreter takes forever to load; make it load special libraries, and you can have afternoon siesta by the time it crawls 27k scripts.<br/> Whereas this script crawls in under *3mins*. 
 
-###How do I use this?
+####How do I use this?
 > Good question
 
 1.Download all these files<br/>
@@ -24,4 +24,4 @@
 `./check ./dummy_scripts` 
 
 ####I've one {more question, problem, doubt, suggestion}
-> Please mail me.
+> Please email me.
