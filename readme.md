@@ -9,7 +9,7 @@
 
 1. This project is **fun** (also its fast, scalable and probably interesting way to do things, can integrate yelp to make it more powerful)<br/>
 2. Scilab-interpreter is bad, it will hang up the first time it encounters a incompatible function in a script<br/>
-3. Scilab-interpreter takes forever to load, make it load special libraries, and you can have afternoon siesta by the time it crawls 27k scripts<br/> Whereas this script crawls in under 10mins. 
+3. Scilab-interpreter takes forever to load; make it load special libraries, and you can have afternoon siesta by the time it crawls 27k scripts.<br/> Whereas this script crawls in under *3mins*. 
 
 ###How do I use this?
 > Good question
@@ -24,4 +24,4 @@
 `./check ./dummy_scripts` 
 
 ####I've one {more question, problem, doubt, suggestion}
-> Mail me.
+> Please mail me.
