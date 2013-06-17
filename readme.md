@@ -23,5 +23,8 @@
 4. Using *check* script to crawl a path where all scilab scripts have been stored(for ex. ./dummy_scripts)<br>
 `./check ./dummy_scripts` 
 
+Optionally, to increase speed and dump the entire info for further analysis, try:<br/>
+`./check ./dummy_scripts > dumpfile`<br>
+
 ####I've one {more question, problem, doubt, suggestion}
 > Please email me.
