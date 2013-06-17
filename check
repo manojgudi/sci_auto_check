@@ -1,8 +1,27 @@
+#!/usr/bin/python
 import os
 import subprocess
 import re
+import argparse
+
+# Colors
+HEADER = '\033[95m'
+OKBLUE = '\033[94m'
+OKGREEN = '\033[92m'
+WARNING = '\033[93m'
+FAIL = '\033[91m'
+ENDC = '\033[0m'
 
 
+# Arg parser
+parser = argparse.ArgumentParser(description="Script to check compatibiliy of scilab-scripts\n www.github.com/manojgudi/sci_auto_check")
+parser.add_argument("path", help="requires a valid file name")
+
+parser.add_argument("-y", help="Force the script to write changes directly to the file", action="store_true")
+args = parser.parse_args()
+
+
+## FUNCTIONS
 def list2str(list_data):
 	formatted_string = ""
 	for i in list_data:
@@ -43,6 +62,7 @@ def isArray(func_name, content):
 def extract_func(abs_file):
 	file_obj = open(abs_file, 'r')
 	file_content = rm_comments(file_obj.read())
+	# Thanks for help in regex, kushalbhabra
 	list_of_func = re.findall("[\w]+\(", file_content)
 	
 	# Function to remove false positive loop keywords like for/while and array declarations
@@ -105,8 +125,9 @@ def isCompatible(func_name):
 # MAIN LOOP FOR TRAVERSING
 #path='/media/d2c1960d-a6c5-4a50-a642-1cd33212cde0/uploads/51/CH12/EX12.2/12_2data.sci'
 #path='/media/d2c1960d-a6c5-4a50-a642-1cd33212cde0/uploads/45/CH7/EX7.4/'
-path='/media/d2c1960d-a6c5-4a50-a642-1cd33212cde0/uploads'
+#path='/media/d2c1960d-a6c5-4a50-a642-1cd33212cde0/uploads'
 #path = 'dummy_scripts'
+path = args.path
 for roots, dirs, files in os.walk(path):
 	for scifile in files:
 		if (scifile.find('.sci') != -1) or (scifile.find('.sce') !=-1 ):
@@ -118,20 +139,21 @@ for roots, dirs, files in os.walk(path):
 				for func_name in func_list:
 					return_value = isCompatible(func_name)
 					if return_value == 0 :
-						print 'Function Compatible: ', func_name, '\n' 
+						print OKGREEN+'Function Compatible: '+ func_name + ENDC
 					elif return_value == 1:
-						print 'Function not compatible: ', func_name, '\n'
+						print FAIL + 'Function Incompatible: ' + func_name + ENDC
 					else:
-						print "User Function: ", func_name,'\n'
+						print OKBLUE + "User Function: " + func_name + ENDC
 			# Call yelp
 			#subprocess.call(['./yelp', fullfile])
 
 
 # Remove contents from disp('contents') before searching functions
-# argparse files
+# argparse files DONE
 # remove comments from content before parsing DONE
-# remove array from content, my_array(5) 5 => index
+# remove array from content, my_array(5) 5 => index DONE
 # integrate yelp
-# printf( N(, N(, N(  case
-# remove user funcions
+# printf( N(, N(, N(  case HANDLED
+# remove user funcions DONE
 # Function Centric Approach
+# Check if func_name is already in incompatible_func_list, if yes, then no need of searching
