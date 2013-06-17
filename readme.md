@@ -11,5 +11,17 @@
 2. Scilab-interpreter is bad, it will hang up the first time it encounters a incompatible function in a script<br/>
 3. Scilab-interpreter takes forever to load, make it load special libraries, and you can have afternoon siesta by the time it crawls 27k scripts<br/> Whereas this script crawls in under 10mins. 
 
-####I've one more question...
-> Ask me when I write the entire script and have time to do monologues
+###How do I use this?
+> Good question
+
+1.Download all these files<br/>
+`git clone https://github.com/manojgudi/sci_auto_check.git` <br>
+2.Install w3m<br>
+`sudo apt-get install w3m`
+3. Generating list of functions in *xyz* version (ex. *5.4.1*) Scilab version<br>
+`./get_list 5.4.1`<br>
+4. Using *check* script to crawl a path where all scilab scripts have been stored(for ex. ./dummy_scripts)<br>
+`./check ./dummy_scripts` 
+
+####I've one {more question, problem, doubt, suggestion}
+> Mail me.
