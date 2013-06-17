@@ -17,7 +17,7 @@
 1.Download all these files<br/>
 `git clone https://github.com/manojgudi/sci_auto_check.git` <br>
 2.Install w3m<br>
-`sudo apt-get install w3m`
+`sudo apt-get install w3m`<br/>
 3. Generating list of functions in *xyz* version (ex. *5.4.1*) Scilab version<br>
 `./get_list 5.4.1`<br>
 4. Using *check* script to crawl a path where all scilab scripts have been stored(for ex. ./dummy_scripts)<br>
