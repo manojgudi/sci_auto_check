@@ -123,10 +123,6 @@ def isCompatible(func_name):
 	
 
 # MAIN LOOP FOR TRAVERSING
-#path='/media/d2c1960d-a6c5-4a50-a642-1cd33212cde0/uploads/51/CH12/EX12.2/12_2data.sci'
-#path='/media/d2c1960d-a6c5-4a50-a642-1cd33212cde0/uploads/45/CH7/EX7.4/'
-#path='/media/d2c1960d-a6c5-4a50-a642-1cd33212cde0/uploads'
-#path = 'dummy_scripts'
 path = args.path
 for roots, dirs, files in os.walk(path):
 	for scifile in files:
@@ -144,16 +140,3 @@ for roots, dirs, files in os.walk(path):
 						print FAIL + 'Function Incompatible: ' + func_name + ENDC
 					else:
 						print OKBLUE + "User Function: " + func_name + ENDC
-			# Call yelp
-			#subprocess.call(['./yelp', fullfile])
-
-
-# Remove contents from disp('contents') before searching functions
-# argparse files DONE
-# remove comments from content before parsing DONE
-# remove array from content, my_array(5) 5 => index DONE
-# integrate yelp
-# printf( N(, N(, N(  case HANDLED
-# remove user funcions DONE
-# Function Centric Approach
-# Check if func_name is already in incompatible_func_list, if yes, then no need of searching

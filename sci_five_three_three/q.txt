@@ -1,0 +1,11 @@
+qld
+qmr
+qpsolve
+qp_solve
+qr
+QUANT_f
+quapro
+quart
+quaskro
+quit
+quote
