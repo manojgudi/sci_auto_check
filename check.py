@@ -90,6 +90,7 @@ def isCompatible(func_name):
 
 	if inFuncList(func_name, func_list_file):
 		# Check For other versions
+		# Thanks dguitarbite for this logic
 		func_list_file = func_name[0].lower()+'.txt'
 		if inFuncList(func_name, func_list_file):
 			return 0
