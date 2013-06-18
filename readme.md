@@ -26,5 +26,11 @@
 Optionally, to increase speed and dump the entire info for further analysis, try:<br/>
 `./check ./dummy_scripts > dumpfile`<br>
 
+Moreover, to analyze these scripts further, you can use yelp along with this:<br/>
+`./check -y dummy_scripts`
+
+####What is this *yelp* you are referring to?
+> **yelp** is sanity-check script for scilab scripts, [read more](https://github.com/manojgudi/yelp) <br/>
+
 ####I've one {more question, problem, doubt, suggestion}
 > Please email me.
