@@ -17,7 +17,7 @@ ENDC = '\033[0m'
 parser = argparse.ArgumentParser(description="Script to check compatibiliy of scilab-scripts\n www.github.com/manojgudi/sci_auto_check")
 parser.add_argument("path", help="requires a valid file name")
 
-parser.add_argument("-y", help="Force the script to write changes directly to the file", action="store_true")
+parser.add_argument("-y", help="Activate yelp", action="store_true")
 args = parser.parse_args()
 
 
@@ -140,3 +140,7 @@ for roots, dirs, files in os.walk(path):
 						print FAIL + 'Function Incompatible: ' + func_name + ENDC
 					else:
 						print OKBLUE + "User Function: " + func_name + ENDC
+
+			# Call yelp
+			if args.y:
+				subprocess.call(['./yelp', fullfile])

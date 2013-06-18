@@ -17,3 +17,4 @@ for eachLetter in {a..z}
 	done
 
 rm all_functions
+rm final_list_of_all_fns
