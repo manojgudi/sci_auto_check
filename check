@@ -18,6 +18,8 @@ parser = argparse.ArgumentParser(description="Script to check compatibiliy of sc
 parser.add_argument("path", help="requires a valid file name")
 
 parser.add_argument("-y", help="Activate yelp", action="store_true")
+parser.add_argument("-v", help="Verbose", action="store_true")
+
 args = parser.parse_args()
 
 
@@ -99,7 +101,29 @@ def inFuncList(func_name, func_list_file):
 		# If no open(func_list_file) throws error like in case of 1.txt
 		return False
 
+# Update dictionary
+def update_dic(dic_name,func_name, file_name ):
+	try:
+		#temp = dic_name[func_name]
+		#temp.append(file_name)
+		#dic_name[func_name] = 
+		dic_name[func_name] += [file_name] 
+	except KeyError:
+		dic_name[func_name] = [file_name]
+	finally:
+		return dic_name
 
+
+# Print Dictionary
+def print_dic(dic):
+	for keys in dic.iterkeys():
+		print FAIL+"Incompatible Function: " + keys + ENDC
+		print OKBLUE+"Called by file/s: "+ENDC
+		
+		for files in dic[keys]:
+			print WARNING+files+ENDC
+		
+		print "----------X----------"
 
 # Is the func_name found in func_list_file of 5.3.3 version
 def isCompatible(func_name):
@@ -124,30 +148,51 @@ def isCompatible(func_name):
 
 # MAIN LOOP FOR TRAVERSING
 #path='/media/d2c1960d-a6c5-4a50-a642-1cd33212cde0/uploads/51/CH12/EX12.2/12_2data.sci'
-#path='/media/d2c1960d-a6c5-4a50-a642-1cd33212cde0/uploads/45/CH7/EX7.4/'
+#path='/media/d2c1960d-a6c5-4a50-a642-1cd33212cde0/uploads/45/CH7/EX7.4'
 #path='/media/d2c1960d-a6c5-4a50-a642-1cd33212cde0/uploads'
 #path = 'dummy_scripts'
 path = args.path
+compatible_dic = {}
+incompatible_dic = {}
+user_dic = {}
+
 for roots, dirs, files in os.walk(path):
 	for scifile in files:
 		if (scifile.find('.sci') != -1) or (scifile.find('.sce') !=-1 ):
+			
 			fullfile = roots+'/'+scifile
-			print fullfile
+			# Verbose
+			if args.v:
+				print fullfile
+	
 			func_list = (extract_func(fullfile))
 			
 			if func_list != 0:
 				for func_name in func_list:
 					return_value = isCompatible(func_name)
 					if return_value == 0 :
-						print OKGREEN+'Function Compatible: '+ func_name + ENDC
+						# Verbose
+						if args.v:
+							print OKGREEN+'Function Compatible: '+ func_name + ENDC
+
+						compatible_dic = update_dic(compatible_dic, func_name, fullfile)
+
 					elif return_value == 1:
-						print FAIL + 'Function Incompatible: ' + func_name + ENDC
+						# Verbose
+						if args.v:
+							print FAIL + 'Function Incompatible: ' + func_name + ENDC
+						incompatible_dic = update_dic(incompatible_dic, func_name, fullfile)
 					else:
-						print OKBLUE + "User Function: " + func_name + ENDC
+						# Verbose
+						if args.v:
+							print OKBLUE + "User Function: " + func_name + ENDC
+						
+						user_dic = update_dic(user_dic, func_name, fullfile)
 			# Call yelp
 			if args.y:
 				subprocess.call(['./yelp', fullfile])
-
+			
+print_dic(incompatible_dic)
 
 # Remove contents from disp('contents') before searching functions
 # argparse files DONE
@@ -156,5 +201,5 @@ for roots, dirs, files in os.walk(path):
 # integrate yelp
 # printf( N(, N(, N(  case HANDLED
 # remove user funcions DONE
-# Function Centric Approach
+# Function Centric Approach DONE
 # Check if func_name is already in incompatible_func_list, if yes, then no need of searching
