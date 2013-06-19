@@ -18,7 +18,7 @@ parser = argparse.ArgumentParser(description="Script to check compatibiliy of sc
 parser.add_argument("path", help="requires a valid file name")
 
 parser.add_argument("-y", help="Activate yelp", action="store_true")
-parser.add_argument("-v", help="Verbose", action="store_true")
+parser.add_argument("-v", help="Gives file centric output", action="store_true")
 
 args = parser.parse_args()
 
@@ -184,6 +184,6 @@ for roots, dirs, files in os.walk(path):
 			# Call yelp
 			if args.y:
 				subprocess.call(['./yelp', fullfile])
-			
-print_dic(incompatible_dic)
+if not args.v:
+	print_dic(incompatible_dic)
 
